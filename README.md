@@ -55,3 +55,14 @@ spark-worker-0   1/1     Running   0          33m
 
 ## Access to Master UI
 
+### Dev cluster
+
+![spark-dev](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/69a82c40-83f4-4ccb-bbe4-d4bab1ffe219)
+
+### Prod cluster
+
+![spark-prod](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/6bf37602-0cb4-4868-ba6e-e355ca1f526b)
+
+### Upgraded cluster
+
+![spark-upgraded](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/0aee1b88-889b-40a9-ae13-adb8180f6717)
