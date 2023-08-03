@@ -1,0 +1,8 @@
+*.log
+
+**/.idea/
+**/.idea_modules/
+*.tgz
+*.tar.gz
+*.DS_Store
+charts

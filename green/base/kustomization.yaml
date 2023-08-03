@@ -1,0 +1,16 @@
+resources:
+  - namespace.yaml
+helmCharts:
+- name: spark
+  repo: https://charts.bitnami.com/bitnami/
+  version: 7.1.2 # comment this for the latest version
+  namespace: spark-upgrade
+  valuesInline:
+    fullnameOverride: spark
+    worker:
+      replicaCount: 1
+    ingress:
+      enabled: true
+      pathType: ImplementationSpecific
+      hostname: spark.test
+      ingressClassName: nginx
