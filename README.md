@@ -1,68 +1,74 @@
 # k8s-spark-cluster
 
 ## Tested version
+
 - helm v3.12.2
 - kustomize v5.1.0
+
 ## Render manifest for blue deployment (with the current version of spark chart)
 
 ```
 # dev environment
-kustomize build --enable-helm blue/overlays/dev
+kustomize build --enable-helm sprak/overlays/dev
 ```
 
 ```
 # prod environment
-kustomize build --enable-helm blue/overlays/prod
+kustomize build --enable-helm spark/overlays/prod
 ```
 
 ```
-# blue/green deployment where the spark chart version is newer
-kustomize build --enable-helm green/overlays/upgrade
+# upgraded environment
+kustomize build --enable-helm spark/overlays/upgraded
 ```
 
 ## Render manifest and deploy to the current cluster
 
 ```
 # dev environment
-kustomize build --enable-helm blue/overlays/dev | kubectl apply -f-
+kustomize build --enable-helm spark/overlays/dev | kubectl apply -f-
 ```
 
 ```
 # prod environment
-kustomize build --enable-helm blue/overlays/prod | kubectl apply -f-
+kustomize build --enable-helm spark/overlays/prod | kubectl apply -f-
 ```
 
 ```
-# blue/green deployment where the spark chart version is newer 
-kustomize build --enable-helm green/overlays/upgrade | kubectl apply -f-
+# upgraded environment
+kustomize build --enable-helm spark/overlays/upgraded | kubectl apply -f-
 ```
 
 ## Get spark cluster pods
 
 ```
 kubectl get po -n spark
-NAME                 READY   STATUS    RESTARTS      AGE
-spark-master-0       1/1     Running   0             31m
-spark-master-dev-0   1/1     Running   0             78m
-spark-worker-0       1/1     Running   1 (29m ago)   31m
-spark-worker-dev-0   1/1     Running   5 (33m ago)   78m
+NAME                  READY   STATUS    RESTARTS        AGE
+dev-spark-master-0    1/1     Running   0               10m
+dev-spark-worker-0    1/1     Running   1 (3m57s ago)   10m
+prod-spark-master-0   1/1     Running   0               10m
+prod-spark-worker-0   1/1     Running   0               10m
 
-kubectl get po -n spark-upgrade
-NAME             READY   STATUS    RESTARTS   AGE
-spark-master-0   1/1     Running   0          33m
-spark-worker-0   1/1     Running   0          33m
+kubectl get po -n spark-upgraded
+NAME                      READY   STATUS    RESTARTS   AGE
+upgraded-spark-master-0   1/1     Running   0          3m18s
+upgraded-spark-worker-0   1/1     Running   0          3m18s
 ```
 
 ## Access to Master UI
 
 ### Dev cluster
 
-![spark-dev](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/69a82c40-83f4-4ccb-bbe4-d4bab1ffe219)
+![dev-spark](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/95e6d8df-df2c-48d1-afd8-aaceeb68b60c)
+
 
 ### Prod cluster
 
-![spark-prod](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/6bf37602-0cb4-4868-ba6e-e355ca1f526b)
+![prod-spark](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/6adbc3fb-0551-4d2f-8633-2d825000abce)
+
 
 ### Upgraded cluster
 
-![spark-upgraded](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/0aee1b88-889b-40a9-ae13-adb8180f6717)
+![upgraded-spark](https://github.com/hungtran84/k8s-spark-cluster/assets/30172743/3510306c-97c0-45a0-895a-70ae4f8563f3)
+
+
