@@ -5,7 +5,22 @@
 - helm v3.12.2
 - kustomize v5.1.0
 
-## Render manifest for blue deployment (with the current version of spark chart)
+## Modify `etc/hosts` for local deloyment
+
+```
+cat /etc/hosts
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost spark.test spark-dev.test spark-upgraded.test
+255.255.255.255 broadcasthost
+::1             localhost
+```
+
+## Render manifests for different environments
 
 ```
 # dev environment
